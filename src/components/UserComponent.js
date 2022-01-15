@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from 'react-router-dom';
 import UserService from "../services/UserService";
 
 class UserComponent extends React.Component{
@@ -7,6 +8,7 @@ class UserComponent extends React.Component{
         this.state = {
             users:[]
         }
+        this.addUser = this.addUser.bind(this);
     }
     
     componentDidMount(){
@@ -15,11 +17,19 @@ class UserComponent extends React.Component{
         });
     }
 
+    // nao entendi
+    addUser(){
+        this.props.history.push('/add-users');
+    }
+
 
     render (){
         return (
             <div>
                 <h1 className="text-center">User List</h1>
+                <div>
+                    <button onClick={this.addUser}>Add User</button>
+                </div>
                 <table className="table table-striped">
                     <thead>
                         <tr>
