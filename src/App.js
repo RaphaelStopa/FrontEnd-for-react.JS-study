@@ -17,9 +17,9 @@ function App() {
           <Routes>
             <Route path="/" exact element= {<UserComponent/>}></Route>
             <Route path="/users" element= {<UserComponent/>}></Route>
-            <Route path="/add-users" element= {<CreateUserComponent/>}></Route>
-            <Route path="/update-user/:id" element= {<UpdateUserComponent/>} 
-             ></Route>
+            <Route path="/add-users/:id" element= {<CreateUserComponent/>}></Route>
+            {/* <Route path="/update-user/:id" element= {<UpdateUserComponent/>} ></Route> */}
+            https://www.youtube.com/watch?v=XkVpb_8IPUM 2.28
           </Routes>
         </div>
       <FooterComponent/>
