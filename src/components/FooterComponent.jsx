@@ -11,7 +11,7 @@ class FooterComponent extends Component {
     render() {
         return (
             <div>
-                <span><footer>Nha nha</footer></span>
+                <span><footer>footer</footer></span>
             </div>
         );
     }

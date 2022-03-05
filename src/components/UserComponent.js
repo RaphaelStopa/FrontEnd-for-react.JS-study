@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import UserService from "../services/UserService";
 
 class UserComponent extends React.Component{
@@ -8,19 +8,20 @@ class UserComponent extends React.Component{
         this.state = {
             users:[]
         }
-        this.addUser = this.addUser.bind(this);
     }
     
+
+    editUser(id){
+        <Link to={`/update-employee/${id}` }></Link>
+    }
+
     componentDidMount(){
         UserService.getUsers().then((Response) => {
             this.setState({users: Response.data})
         });
     }
 
-    // nao entendi
-    addUser(){
-        this.props.history.push('/add-users');
-    }
+
 
 
     render (){
@@ -28,7 +29,9 @@ class UserComponent extends React.Component{
             <div>
                 <h1 className="text-center">User List</h1>
                 <div>
-                    <button onClick={this.addUser}>Add User</button>
+                        <Link to={'/add-users'}>
+                            <button >Add User</button>
+                        </Link>
                 </div>
                 <table className="table table-striped">
                     <thead>
@@ -48,6 +51,11 @@ class UserComponent extends React.Component{
                                     <td>{user.fistName}</td>
                                     <td>{user.lastName}</td>
                                     <td>{user.email}</td>
+                                    <td>
+                                    <Link to={`/update-user/${user.id}` }>
+                                                 <button>update</button>
+                                        </Link>
+                                    </td>
                                 </tr>
                             )
                         }
@@ -59,3 +67,4 @@ class UserComponent extends React.Component{
 }
 
 export default UserComponent;
+

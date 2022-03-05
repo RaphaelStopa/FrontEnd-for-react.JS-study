@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
 import UserService from '../services/UserService';
+import { Link, useParams } from "react-router-dom";
 
-class CreateUserComponent extends Component {
+// function BlogPost() {
+//     const { id } = useParams();
+//   }
 
+
+
+class UpdateUserComponent extends Component {
+    
+    
     constructor(props){
         super(props)
+        
         this.state = {
+            // TODO AQUI NAO PODE SER ASSIM SO FIZ PARA SER MAIS SIMPLES E RAPIDO
+            ID: window.location.href.split("/").pop(),
+            // id: this.props.match.params,
             firstName: '',
             lastName: '',
             email: ''
@@ -15,18 +26,39 @@ class CreateUserComponent extends Component {
         this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
         this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
         this.changeEmailHandler = this.changeEmailHandler.bind(this);
-        this.saveUser = this.saveUser.bind(this);
+        this.updateUser = this.updateUser.bind(this);
     }
 
-    saveUser = (e) =>{
+
+    
+
+
+    componentDidMount(){
+
+
+        // https://www.youtube.com/watch?v=XkVpb_8IPUM
+
+        // const {id} = useParams();
+        // console.log(id)
+        
+        UserService.getUserById(this.state.id).then((res) =>{
+            
+            let user = res.data;
+            this.setState({
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email
+            })
+        })
+    }
+
+
+    updateUser = (e) =>{
         e.preventDefault();
         let user = {firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email};
         console.log('employee => ' +  JSON.stringify(user))
-
-        UserService.createUser(user).then(res => {
-                    // Todo fazer um redirect
-
-        })
+        UserService.updateUser(user, this.state.id)
+        // Todo fazer um redirect
     }
 
     changeFirstNameHandler= (event) => {
@@ -41,6 +73,7 @@ class CreateUserComponent extends Component {
         this.setState({email: event.target.value})
     }
 
+    
 
 
     render() {
@@ -48,7 +81,7 @@ class CreateUserComponent extends Component {
             <div>
                 <div>
                     <div>
-                        <h3>Add User</h3>
+                        <h3>Upadate User</h3>
                         <div>
                             <form>
                                 <div>
@@ -63,7 +96,7 @@ class CreateUserComponent extends Component {
                                     <label>Email Address:</label>
                                     <input placeholder='Email Adress' name="email" value={this.state.email} onChange={this.changeEmailHandler}></input>
                                 </div>
-                                <button onClick={this.saveUser}>Save</button>
+                                <button onClick={this.updateUser}>Save</button>
                                 <div> <Link to={'/users'}><button>Cancel</button></Link></div>
                             </form>
                         </div>
@@ -74,4 +107,5 @@ class CreateUserComponent extends Component {
     }
 }
 
-export default CreateUserComponent;
+
+export default UpdateUserComponent;

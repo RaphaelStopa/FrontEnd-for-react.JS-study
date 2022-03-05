@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HeaderComponent from './components/HeaderComponent';
 import FooterComponent from './components/FooterComponent';
 import CreateUserComponent from './components/CreateUserComponent';
+import UpdateUserComponent from './components/UpdateUserComponent';
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
             <Route path="/" exact element= {<UserComponent/>}></Route>
             <Route path="/users" element= {<UserComponent/>}></Route>
             <Route path="/add-users" element= {<CreateUserComponent/>}></Route>
+            <Route path="/update-user/:id" element= {<UpdateUserComponent/>} 
+             ></Route>
           </Routes>
         </div>
       <FooterComponent/>

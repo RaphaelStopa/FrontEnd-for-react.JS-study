@@ -13,7 +13,7 @@ class HeaderComponent extends Component {
             <div>
                 <header>
                     <nav>
-                        <div><a href='https://javaguides.net'>User sei la</a></div>
+                        <div><a href='https://www.google.com/'>Header link</a></div>
                     </nav>
                 </header>
             </div>
