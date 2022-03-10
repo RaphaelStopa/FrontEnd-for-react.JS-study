@@ -2,20 +2,31 @@ import { useParams, Link } from "react-router-dom";
 import UserService from '../services/UserService';
 import {useState } from 'react';
 
+
 function User() {
 
     // colocar os dois metodos e aparar o updae e create
-
     let { id } = useParams();
     const[firstName, setFirstName] = useState('');
     const[lastName, setLastName] = useState('');
     const[email, setEmail] = useState('');
+    
+    UserService.getUserById(id).firstName
 
     function updateUser(e){
         e.preventDefault();
+        if(id != -1) {
         let user = {firstName: firstName, lastName: lastName, email: email};
         console.log('employee => ' +  JSON.stringify(user))
         UserService.updateUser(user, id)
+    } else {
+        let user = {firstName: firstName, lastName: lastName, email: email};
+                console.log('employee => ' +  JSON.stringify(user))
+                UserService.createUser(user).then(res => {
+                            // Todo fazer um redirect 
+                        })
+                    }
+
     }
 
     

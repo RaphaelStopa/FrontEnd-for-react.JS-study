@@ -19,6 +19,5 @@ class UserService{
         return axios.put(USERS_REST_API_URL + '/' + id, user);
     }
 
-
 }
 export default new UserService();

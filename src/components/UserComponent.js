@@ -29,7 +29,7 @@ class UserComponent extends React.Component{
             <div>
                 <h1 className="text-center">User List</h1>
                 <div>
-                        <Link to={'/add-users'}>
+                        <Link to={'/user/'}>
                             <button >Add User</button>
                         </Link>
                 </div>
@@ -52,7 +52,7 @@ class UserComponent extends React.Component{
                                     <td>{user.lastName}</td>
                                     <td>{user.email}</td>
                                     <td>
-                                    <Link to={`/update-user/${user.id}` }>
+                                    <Link to={`/user/${user.id}` }>
                                                  <button>update</button>
                                         </Link>
                                     </td>

@@ -35,29 +35,29 @@
     
 
 
-//     componentDidMount(){
+    componentDidMount(){
 
-//         const search = this.props.location;
-//         console.log(s)
-//         const name = new URLSearchParams().get("id");
+        const search = this.props.location;
+        console.log(s)
+        const name = new URLSearchParams().get("id");
 
-//         console.log(name)
+        console.log(name)
 
-//         // https://www.youtube.com/watch?v=XkVpb_8IPUM
+        // https://www.youtube.com/watch?v=XkVpb_8IPUM
 
-//         // const {id} = useParams();
-//         // console.log(id)
+        // const {id} = useParams();
+        // console.log(id)
         
-//         UserService.getUserById(this.state.id).then((res) =>{
+        UserService.getUserById(this.state.id).then((res) =>{
             
-//             let user = res.data;
-//             this.setState({
-//                 firstName: user.firstName,
-//                 lastName: user.lastName,
-//                 email: user.email
-//             })
-//         })
-//     }
+            let user = res.data;
+            this.setState({
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email
+            })
+        })
+    }
 
 
 //     updateUser = (e) =>{
