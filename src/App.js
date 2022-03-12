@@ -16,10 +16,8 @@ function App() {
           <Routes>
             <Route path="/" exact element= {<UserComponent/>}></Route>
             <Route path="/users" element= {<UserComponent/>}></Route>
-            {/* <Route path="/add-users/:id" element= {<CreateUserComponent/>}></Route> */}
-            {/* <Route path="/update-user/:id" element= {<UpdateUserComponent/>} ></Route> */}
-            <Route path="/user/:id" element= {<User/>} ></Route>
-            https://www.youtube.com/watch?v=XkVpb_8IPUM 2.28
+            <Route path="/user"  element= {<User/>} ></Route>
+            <Route path="/user/:id" exact element= {<User/>} ></Route>
           </Routes>
         </div>
       <FooterComponent/>

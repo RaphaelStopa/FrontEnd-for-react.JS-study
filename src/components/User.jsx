@@ -1,21 +1,33 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link} from "react-router-dom";
 import UserService from '../services/UserService';
-import {useState } from 'react';
+import {useState, useEffect } from 'react';
 
 
 function User() {
-
-    // colocar os dois metodos e aparar o updae e create
     let { id } = useParams();
     const[firstName, setFirstName] = useState('');
     const[lastName, setLastName] = useState('');
     const[email, setEmail] = useState('');
-    
-    UserService.getUserById(id).firstName
 
-    function updateUser(e){
+
+    useEffect(() => {
+        if(id !== undefined) {
+        async function getUser() {
+          try {
+            const { data } = await UserService.getUserById(id);
+            setFirstName(data.firstName)
+            setLastName(data.lastName)
+            setEmail(data.email)
+          } catch (error) {
+            alert("Ocorreu um erro ao buscar o user");
+          }
+        }
+        getUser();
+    }}, []);
+
+    function User(e){
         e.preventDefault();
-        if(id != -1) {
+        if(id !== undefined) {
         let user = {firstName: firstName, lastName: lastName, email: email};
         console.log('employee => ' +  JSON.stringify(user))
         UserService.updateUser(user, id)
@@ -26,15 +38,20 @@ function User() {
                             // Todo fazer um redirect 
                         })
                     }
-
     }
 
-    
+    function getTitle(){
+        if(id !== undefined) {
+            return <h3>Update user</h3>
+        } else {
+            return <h3>Add user</h3>
+        }
+    }
         return (
             <div>
                 <div>
                     <div>
-                        <h3>Upadate User</h3>
+                        {getTitle()}
                         <div>
                             <form>
                                 <div>
@@ -49,7 +66,7 @@ function User() {
                                     <label>Email Address:</label>
                                     <input placeholder='Email Adress' name="email" value={email} onChange={e => setEmail(e.target.value)}></input>
                                 </div>
-                                <button onClick={updateUser}>Save</button>
+                                <button onClick={User}>Save</button>
                                 <div> <Link to={'/users'}><button>Cancel</button></Link></div>
                             </form>
                         </div>

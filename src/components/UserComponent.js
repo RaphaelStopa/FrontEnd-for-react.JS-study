@@ -21,6 +21,12 @@ class UserComponent extends React.Component{
         });
     }
 
+    deleteUser(id){
+        UserService.deleteUser(id).then((res) => {
+            this.setState({users: this.state.users.filter(user => user.id !== id)})
+        });
+    }
+
 
 
 
@@ -29,7 +35,7 @@ class UserComponent extends React.Component{
             <div>
                 <h1 className="text-center">User List</h1>
                 <div>
-                        <Link to={'/user/'}>
+                        <Link to={'/user'}>
                             <button >Add User</button>
                         </Link>
                 </div>
@@ -55,6 +61,7 @@ class UserComponent extends React.Component{
                                     <Link to={`/user/${user.id}` }>
                                                  <button>update</button>
                                         </Link>
+                                        <button onClick={()=>this.deleteUser(user.id)}>delete</button>
                                     </td>
                                 </tr>
                             )
